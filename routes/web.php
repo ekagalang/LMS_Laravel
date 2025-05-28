@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\Admin\CourseModuleController as AdminCourseModuleController;
+use App\Http\Controllers\Admin\ModuleLessonController as AdminModuleLessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,10 @@ Route::middleware(['auth', 'role:administrator'])
         Route::resource('categories', AdminCategoryController::class);
 
         Route::resource('courses', AdminCourseController::class);
+
+        Route::resource('courses.modules', AdminCourseModuleController::class)->except(['show']);
+
+        Route::resource('courses.modules.lessons', AdminModuleLessonController::class)->except(['show']);
 });
 
 // Rute untuk instruktur (jika ada)

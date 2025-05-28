@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-// use Illuminate\Database\Eloquent\Relations\HasMany; // Untuk Module/Lesson nanti
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Course extends Model
 {
@@ -39,9 +39,8 @@ class Course extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Nanti bisa ditambahkan relasi ke modules, lessons, enrollments, dll.
-    // public function modules(): HasMany
-    // {
-    //     return $this->hasMany(Module::class);
-    // }
+    public function modules(): HasMany
+    {
+        return $this->hasMany(Module::class)->orderBy('order');
+    }
 }
